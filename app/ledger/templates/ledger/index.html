@@ -1,0 +1,41 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Release Ledger</title>
+  <link rel="stylesheet" href="{% static 'ledger/site.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Release Ledger</h1>
+    <p class="build">v{{ build.version }} &middot; {{ build.git_sha|slice:":12" }} &middot; {{ build.environment }}</p>
+  </header>
+  <main>
+    <section class="grid">
+      {% for env, items in current.items %}
+      <article class="card">
+        <h2>{{ env }}</h2>
+        {% for r in items %}
+        <p><strong>{{ r.service }}</strong> <code>{{ r.version }}</code></p>
+        {% empty %}
+        <p class="muted">No successful releases yet.</p>
+        {% endfor %}
+      </article>
+      {% endfor %}
+    </section>
+    <h2>Recent releases</h2>
+    <table>
+      <thead><tr><th>Service</th><th>Version</th><th>Environment</th><th>Status</th><th>When (UTC)</th></tr></thead>
+      <tbody>
+      {% for r in releases %}
+        <tr><td>{{ r.service }}</td><td><code>{{ r.version }}</code></td><td>{{ r.environment }}</td>
+          <td class="status-{{ r.status }}">{{ r.get_status_display }}</td><td>{{ r.created_at|date:"Y-m-d H:i" }}</td></tr>
+      {% empty %}
+        <tr><td colspan="5" class="muted">No releases recorded.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+[project]
+name = "django-ecs-fargate-delivery-platform"
+version = "1.0.0"
+description = "Django release-ledger service packaged for AWS ECS Fargate, ECR and RDS PostgreSQL"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Shubham Khedkar" }]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.django_settings"
+pythonpath = ["app", "."]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".venv", "app/ledger/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "DJ", "SIM", "RUF"]
+ignore = ["RUF012"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "S603", "S607"]

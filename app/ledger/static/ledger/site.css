@@ -1,0 +1,14 @@
+:root { --bg: #0f172a; --card: #1e293b; --fg: #e2e8f0; --muted: #94a3b8; --ok: #22c55e; --bad: #ef4444; --warn: #f59e0b; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--fg); }
+header, main { max-width: 960px; margin: 0 auto; padding: 1.25rem; }
+.build { color: var(--muted); font-size: .9rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.card { background: var(--card); border-radius: .75rem; padding: 1rem; }
+.card h2 { margin-top: 0; text-transform: uppercase; font-size: 1rem; letter-spacing: .05em; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: .5rem; border-bottom: 1px solid #334155; }
+.muted { color: var(--muted); }
+.status-succeeded { color: var(--ok); }
+.status-failed, .status-rolled_back { color: var(--bad); }
+.status-in_progress { color: var(--warn); }

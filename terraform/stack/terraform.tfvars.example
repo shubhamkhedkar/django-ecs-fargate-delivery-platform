@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars (git-ignored) and fill in your values.
+project         = "release-ledger"
+environment     = "prod"
+region          = "ap-south-1"
+app_domain      = "ledger.example.com"
+certificate_arn = "arn:aws:acm:ap-south-1:111122223333:certificate/00000000-0000-0000-0000-000000000000"
+image_tag       = "0123abc"
+
+# Cost levers for a non-production copy:
+# single_nat_gateway  = true
+# db_multi_az         = false
+# min_capacity        = 1
+# deletion_protection = false
+# alarm_email         = "you@example.com"
